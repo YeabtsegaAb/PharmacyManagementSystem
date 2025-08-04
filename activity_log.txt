@@ -1,0 +1,1 @@
+[2025-08-01 21:23:11] Supplier added: Name=konka, SupplierID=5
