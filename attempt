@@ -1,0 +1,25 @@
+/**
+ * This is the simplest possible Java program.
+ * It demonstrates how to create a variable and print its value.
+ * There are no methods other than the required 'main' method.
+ */
+public class SimpleVariable {
+
+    /**
+     * This is the main entry point of the program.
+     */
+    public static void main(String[] args) {
+
+        // Step 1: Declare a variable.
+        // We are creating a variable named 'myNumber' that can hold an integer (whole number).
+        int myNumber;
+
+        // Step 2: Assign a value to the variable.
+        // We are storing the number 100 inside the 'myNumber' variable.
+        myNumber = 100;
+
+        // Step 3: Print the value of the variable to the console.
+        // The program will display the text "The value is: 100" when it runs.
+        System.out.println("The value is: " + myNumber);
+    }
+}
