@@ -1,3 +1,9 @@
+GROUP MEMBERS:
+1, YEABTSEGA ABEBAW ------UGR/0332/25
+2, ABENEZER MULUGETA ----UGR/0221/25
+3, SARON YTBAREK -------- UGR/0315/25
+4, YOHANNES MULUGETA -----UGR/0338/25
+
 # 💊 Pharmacy Management System
 
 A robust desktop application built using **Java** and **SQLite** to streamline daily pharmacy operations like customer handling, product management, inventory control, and sales tracking.
