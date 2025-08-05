@@ -290,12 +290,26 @@ private void addSale(JTextArea cartTextArea, JTextField totalAmountField, JList<
         boolean detailsAdded = addToSalesDetails(saleId, productName, quantity, totalAmount);
         if (detailsAdded) {
             JOptionPane.showMessageDialog(salePanel, "Sale successfully recorded with details!", "Success", JOptionPane.INFORMATION_MESSAGE);
+            // Log activity to file
+            logActivity("Sale made: SaleID=" + saleId + ", CustomerID=" + customerId + ", Product=" + productName + ", Quantity=" + quantity + ", TotalAmount=" + totalAmount);
         } else {
             JOptionPane.showMessageDialog(salePanel, "Sale recorded, but details could not be saved.", "Warning", JOptionPane.WARNING_MESSAGE);
         }
         totalAmountField.setText("0.0"); // Reset the total amount field
     } else {
         JOptionPane.showMessageDialog(salePanel, "Failed to record the sale. Please try again.", "Error", JOptionPane.ERROR_MESSAGE);
+    }
+}
+
+// Log activity to activity_log.txt
+private void logActivity(String message) {
+    try (java.io.FileWriter fw = new java.io.FileWriter("data/activity_log.txt", true);
+         java.io.BufferedWriter bw = new java.io.BufferedWriter(fw)) {
+        String timestamp = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new java.util.Date());
+        bw.write("[" + timestamp + "] " + message);
+        bw.newLine();
+    } catch (Exception e) {
+        // Optionally show error or ignore
     }
 }
 

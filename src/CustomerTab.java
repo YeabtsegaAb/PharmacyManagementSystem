@@ -133,6 +133,8 @@ public class CustomerTab extends AbstractTabPanel {
 
                     // Add the new customer to the table
                     addCustomerToTable(customerId, name, address, phone, email);
+                    // Log activity to file
+                    logActivity("Customer added: Name=" + name + ", CustomerID=" + customerId);
                 } else {
                     JOptionPane.showMessageDialog(null, "Error: Unable to retrieve customer ID.", "Error", JOptionPane.ERROR_MESSAGE);
                 }
@@ -140,6 +142,18 @@ public class CustomerTab extends AbstractTabPanel {
 
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error: " + ex.getMessage(), "Database Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+
+    // Log activity to activity_log.txt
+    private void logActivity(String message) {
+        try (java.io.FileWriter fw = new java.io.FileWriter("data/activity_log.txt", true);
+             java.io.BufferedWriter bw = new java.io.BufferedWriter(fw)) {
+            String timestamp = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new java.util.Date());
+            bw.write("[" + timestamp + "] " + message);
+            bw.newLine();
+        } catch (Exception e) {
+            // Optionally show error or ignore
         }
     }
 

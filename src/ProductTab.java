@@ -3,6 +3,19 @@ import java.awt.*;
 import java.sql.*;
 
 public class ProductTab extends AbstractTabPanel {
+    // Static method to get all product names from the database
+    public static String[] getAllProductNames() {
+        java.util.List<String> products = new java.util.ArrayList<>();
+        try (PreparedStatement stmt = DatabaseConnection.connection.prepareStatement("SELECT ProductName FROM Products");
+             ResultSet rs = stmt.executeQuery()) {
+            while (rs.next()) {
+                products.add(rs.getString("ProductName"));
+            }
+        } catch (SQLException e) {
+            // Optionally handle error
+        }
+        return products.toArray(new String[0]);
+    }
 
     private JPanel productsPanel;
     private JTextField productNameField;
@@ -138,11 +151,26 @@ public class ProductTab extends AbstractTabPanel {
             if (rowsAffected > 0) {
                 JOptionPane.showMessageDialog(productsPanel, "Product added successfully!");
                 resetFields();
+                // Log activity to file
+                logActivity("Product added: Name=" + productName + ", Category=" + category + ", Supplier=" + supplierName);
             } else {
                 showErrorMessage("Failed to add product.");
             }
+            // Optionally: refresh product list in other tabs if needed
         } catch (SQLException ex) {
             showErrorMessage("Database error: " + ex.getMessage());
+        }
+    }
+
+    // Log activity to activity_log.txt
+    private void logActivity(String message) {
+        try (java.io.FileWriter fw = new java.io.FileWriter("data/activity_log.txt", true);
+             java.io.BufferedWriter bw = new java.io.BufferedWriter(fw)) {
+            String timestamp = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new java.util.Date());
+            bw.write("[" + timestamp + "] " + message);
+            bw.newLine();
+        } catch (Exception e) {
+            // Optionally show error or ignore
         }
     }
     

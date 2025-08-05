@@ -4,7 +4,7 @@ import java.sql.SQLException;
 import javax.swing.JOptionPane;
 
 public class DatabaseConnection {
-    public static final String DB_URL = "jdbc:sqlite:C:/PHARMACY/PHARMACY.db";
+    public static final String DB_URL = "jdbc:sqlite:C:/Users/niway/OneDrive/Desktop/PharmacyManagementSystem/PHARMACY.db";
     public static Connection connection;
 
     public static void connectDB() {
@@ -15,6 +15,5 @@ public class DatabaseConnection {
             JOptionPane.showMessageDialog(null, "Error connecting to database: " + e.getMessage());
             System.exit(1);
         }
-
     }
 }

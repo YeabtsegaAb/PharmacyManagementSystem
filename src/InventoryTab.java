@@ -156,6 +156,8 @@ public class InventoryTab extends AbstractTabPanel {
                     quantityField.setText("");
                     expiryDateField.setText("");
                     priceField.setText("");
+                    // Log activity to file
+                    logActivity("Inventory added: Product=" + productName + ", BatchNumber=" + batchNumber + ", Quantity=" + quantity + ", Supplier=" + supplierName);
                 } else {
                     JOptionPane.showMessageDialog(panel, "Failed to add inventory.", "Error", JOptionPane.ERROR_MESSAGE);
                 }
@@ -165,6 +167,17 @@ public class InventoryTab extends AbstractTabPanel {
         });
 
         return panel;
+    }
+    // Log activity to activity_log.txt
+    private void logActivity(String message) {
+        try (java.io.FileWriter fw = new java.io.FileWriter("data/activity_log.txt", true);
+             java.io.BufferedWriter bw = new java.io.BufferedWriter(fw)) {
+            String timestamp = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new java.util.Date());
+            bw.write("[" + timestamp + "] " + message);
+            bw.newLine();
+        } catch (Exception e) {
+            // Optionally show error or ignore
+        }
     }
 
     // Helper to get ProductID by name

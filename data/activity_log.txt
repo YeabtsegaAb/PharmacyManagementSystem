@@ -1,1 +1,8 @@
 [2025-08-02 06:03:08] Supplier added: Name=ufe, SupplierID=6
+[2025-08-05 09:08:14] Customer added: Name=jj, CustomerID=7
+[2025-08-05 09:08:32] Product added: Name=Bep, Category=Pain Reliever, Supplier=Pharma Inc.
+[2025-08-05 09:09:35] Supplier added: Name=Rt Plc, SupplierID=5
+[2025-08-05 09:10:19] Inventory added: Product=Insulin, BatchNumber=n1900, Quantity=8, Supplier=HealthCare Supplies
+[2025-08-05 09:10:33] Sale made: SaleID=6, CustomerID=6, Product=Insulin, Quantity=5, TotalAmount=250.0
+[2025-08-05 09:19:51] Product added: Name=habt, Category=Pain Reliever, Supplier=Pharma Inc.
+[2025-08-05 09:20:54] Inventory added: Product=Bep, BatchNumber=B921, Quantity=20, Supplier=Pharma Inc.
